@@ -8,6 +8,9 @@
 </head>
 
 <body>
+  <div id="loader">
+  <div class="loader-circle"></div>
+</div>
 
 <!-- ✅ HEADER -->
 <header class="nav">
@@ -108,5 +111,22 @@
 
 <script src="main.js"></script>
 
+<script>
+window.onload = () => {
+  document.getElementById("loader").style.display = "none";
+};
+
+// Scroll Reveal
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    let top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 70) {
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+
 </body>
 </html>
+
