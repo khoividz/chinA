@@ -8,18 +8,21 @@
 
 body {
   color: #fff;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54, #1e1e2f);
-  background-size: 300% 300%;
-  animation: bgMove 12s ease infinite;
+  background: linear-gradient(-45deg, #1e1e2f, #2c2c54, #4ea1ff, #23d5ab);
+  background-size: 400% 400%;
+  animation: bgMove 15s ease infinite;
   overflow-x: hidden;
 }
 
 /* Background animation */
 @keyframes bgMove {
   0% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
   50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
   100% { background-position: 0% 50%; }
 }
+
 
 /* LOADING SCREEN */
 #loader {
@@ -208,3 +211,4 @@ footer {
   backdrop-filter: blur(10px);
   margin-top: 40px;
 }
+
