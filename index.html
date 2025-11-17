@@ -5,15 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lớp 9A – Hành trình STEM</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reveal animation */
+    .reveal {opacity: 0; transform: translateY(40px); transition: 0.8s ease;}
+    .reveal.active {opacity: 1; transform: translateY(0);}
+
+    /* Fade-in for images */
+    .cns-image-grid img {opacity: 0; transition: 0.8s ease;}
+    .cns-image-grid img.show {opacity: 1;}
+
+    /* Hover zoom effect */
+    .teacher-card img, .cns-image-grid img {
+      transition: transform 0.3s ease;
+    }
+    .teacher-card img:hover, .cns-image-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fade-in text block */
+    .cns-info {opacity: 0; transform: translateY(30px); transition: 0.9s ease;}
+    .cns-info.active {opacity: 1; transform: translateY(0);}
+  </style>
 </head>
 
 <body>
-  <!--
-  <div id="loader">
-  <div class="loader-circle"></div>
-</div>
-
-<!-- ✅ HEADER -->
 <header class="nav">
   <h2 class="logo">Lớp 9A</h2>
   <ul class="menu">
@@ -25,8 +40,6 @@
   </ul>
 </header>
 
-
-<!-- ✅ HERO -->
 <section id="home" class="hero reveal">
   <div class="hero-text">
     <h1>Lớp 9A – STEM</h1>
@@ -35,15 +48,11 @@
   <img src="banner.jpg" class="hero-img" alt="Banner lớp 9A">
 </section>
 
-
-<!-- ✅ GALLERY -->
 <section id="gallery" class="section reveal">
   <h2>Kỷ niệm</h2>
   <div id="galleryContainer" class="gallery-grid"></div>
 </section>
 
-
-<!-- ✅ SUBJECTS -->
 <section id="subjects" class="section colored reveal">
   <h2>Môn học</h2>
   <div class="subject-grid">
@@ -56,13 +65,10 @@
   </div>
 </section>
 
-
-<!-- ✅ TEACHERS -->
 <section id="teachers" class="section reveal">
   <h2>Thầy cô bộ môn</h2>
 
   <div class="teacher-grid">
-
     <div class="teacher-card">
       <img src="teacher_toan.jpg" onerror="this.src='default_teacher.png'">
       <p>GV Toán</p>
@@ -88,40 +94,70 @@
       <p>GV Tin học</p>
     </div>
 
-    <div class="cns.jpg">
+    <!-- 🔧 ĐÃ SỬA LẠI PHẦN CÔNG NGHỆ SỐ -->
+    <div class="teacher-card">
       <img src="cns.jpg" onerror="this.src='cns.png'">
-      <p>Công nghệ số</p>
+      <p><b>Công nghệ số</b></p>
     </div>
+  </div>
 
+  <!-- 🔧 THÊM NỘI DUNG GIẢI THÍCH + 4 ẢNH -->
+  <div class="cns-info">
+    <h3>Công nghệ số – Sản phẩm số</h3>
+    <p>
+      "Công nghệ số sản phẩm" có thể hiểu là <b>sản phẩm số</b> hoặc <b>việc ứng dụng công nghệ số vào quá trình sản xuất</b> để tạo ra các sản phẩm truyền thống được tối ưu hóa.
+      <br><br>
+      Sản phẩm số là những thứ không thể cầm nắm trực tiếp, chỉ trải nghiệm qua thiết bị điện tử như: sách điện tử, âm nhạc số, video, ứng dụng…
+      <br><br>
+      Còn ứng dụng công nghệ số trong sản xuất gồm việc sử dụng AI, Big Data, IoT để tự động hóa, tối ưu hóa quy trình, nâng cao hiệu suất.
+    </p>
+
+    <div class="cns-image-grid">
+      <img src="cns1.jpg" onerror="this.src='default.png'">
+      <img src="cns2.jpg" onerror="this.src='default.png'">
+      <img src="cns3.jpg" onerror="this.src='default.png'">
+      <img src="cns4.jpg" onerror="this.src='default.png'">
+    </div>
   </div>
 </section>
 
-
-<!-- ✅ VIDEOS -->
 <section id="videos" class="section colored reveal">
   <h2>Thí nghiệm STEM</h2>
 
   <div class="video-grid">
-    <iframe src="https://youtube.com/shorts/AkdJrkDwUGY?si=r6lbqz26-K1OR9u9" allowfullscreen></iframe>
-    <iframe src="https://youtube.com/shorts/YYIaS821ih8?si=yelkXrypwwzVFlxO" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/AkdJrkDwUGY" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/YYIaS821ih8" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/IroVQF7kGdQ" allowfullscreen></iframe>
   </div>
 </section>
 
-
-<!-- ✅ FOOTER -->
 <footer>
-  Lớp 9A – Năm học 2025-2026 • Trang web được tạo bởi Khôi Vĩ ️
+  Lớp 9A – Năm học 2025-2026 • Trang web được tạo bởi Khôi Vĩ
 </footer>
 
-
 <script src="main.js"></script>
+<script>
+// Reveal on scroll
+function reveal() {
+  const reveals = document.querySelectorAll('.reveal, .cns-info');
+  reveals.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add('active');
+    }
+  });
 
+  // Fade-in images
+  const imgs = document.querySelectorAll('.cns-image-grid img');
+  imgs.forEach(img => {
+    const rect = img.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 40) {
+      img.classList.add('show');
+    }
+  });
+}
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
+</script>
 </body>
 </html>
-
-
-
-
-
-
